@@ -1,4 +1,5 @@
-import { View } from "react-native";
+import { Link } from "expo-router";
+import { Text, View } from "react-native";
 
 export default function Index() {
   return (
@@ -9,7 +10,11 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <View></View>
+      <View>
+        <Text>Kayak duel</Text>
+        <Link href={"/race"}>Go to Race</Link>
+        <Link href={"/result"}>Go to Result</Link>
+      </View>
     </View>
   );
 }

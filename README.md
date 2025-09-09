@@ -19,6 +19,12 @@ Future updates will include new game modes, customization, and more features.
 
 ---
 
+## 📸 Screenshots
+
+![Menu screen](assets/screenshots/menu.jpg)
+![Race screen](assets/screenshots/race.jpg)
+![Result screen](assets/screenshots/result.jpg)
+
 ## 🛠️ Tech Stack
 
 - **React Native (Expo)** → cross-platform development.
