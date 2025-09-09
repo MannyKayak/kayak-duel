@@ -24,18 +24,9 @@ Future updates will include new game modes, customization, and more features.
 Here are the main screens of the app (prototype Day 1):
 
 <p align="center">
-  <figure>
-    <img src="assets/screenshots/menu.jpg" alt="Menu Screen" width="250"/>
-    <figcaption align="center">Menu Screen</figcaption>
-  </figure>
-  <figure>
-    <img src="assets/screenshots/race.jpg" alt="Race Screen" width="250"/>
-    <figcaption align="center">Race Screen</figcaption>
-  </figure>
-  <figure>
-    <img src="assets/screenshots/result.jpg" alt="Result Screen" width="250"/>
-    <figcaption align="center">Result Screen</figcaption>
-  </figure>
+  <img src="assets/screenshots/menu.jpg" alt="Menu Screen" width="250"/>
+  <img src="assets/screenshots/race.jpg" alt="Race Screen" width="250"/>
+  <img src="assets/screenshots/result.jpg" alt="Result Screen" width="250"/>
 </p>
 
 ## 🛠️ Tech Stack
