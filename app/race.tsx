@@ -1,23 +1,30 @@
-import { Link } from "expo-router";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { startGameLoop, stopGameLoop } from "@/game/gameLoop";
+import React, { useEffect, useState } from "react";
+import { Button, Text, View } from "react-native";
 
-const Race = () => {
+export default function Race() {
+  const [position, setPosition] = useState(0);
+
+  useEffect(() => {
+    startGameLoop(
+      { position: 0, lastTap: "L", gameOver: "race" },
+      (state) => {
+        // callback ogni tick
+        setPosition(state.position);
+      },
+      (finalState) => {
+        console.log("Race finished!", finalState);
+      }
+    );
+
+    return () => stopGameLoop();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Race Page</Text>
-      <Link href="/">Go Home</Link>
-      <Link href="/result">Go to Result</Link>
+    <View>
+      <Text>Race in progress...</Text>
+      <Text>Position: {position.toFixed(1)}</Text>
+      <Button title="Stop Race" onPress={stopGameLoop} />
     </View>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
-export default Race;
+}
