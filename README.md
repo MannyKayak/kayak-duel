@@ -1,50 +1,44 @@
-# Welcome to your Expo app 👋
+# 🚣‍♂️ Kayak Duel
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)  
+![Expo](https://img.shields.io/badge/Expo-49.0.0-blue?logo=expo)  
+![React Native](https://img.shields.io/badge/React%20Native-0.74-blue?logo=react)
 
-## Get started
+---
 
-1. Install dependencies
+## 📖 Description
 
-   ```bash
-   npm install
-   ```
+**Kayak Duel** is a competitive 1vs1 mobile game where you race against your friends in a kayaking sprint.  
+The core mechanic is simple:
 
-2. Start the app
+- Tap the **left** and **right** sides of the screen alternately to paddle.
+- The faster and more regular you tap, the faster your kayak goes.
+- The first to cross the finish line wins!
 
-   ```bash
-   npx expo start
-   ```
+Future updates will include new game modes, customization, and more features.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **React Native (Expo)** → cross-platform development.
+- **Firebase** → real-time multiplayer and match management.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (>= 18)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- Expo Go app installed on your phone (iOS/Android)
+
+### Installation
 
 ```bash
-npm run reset-project
+git clone https://github.com/your-username/kayak-duel.git
+cd kayak-duel
+npm install
+npx expo start
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
