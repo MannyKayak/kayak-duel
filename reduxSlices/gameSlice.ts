@@ -9,8 +9,8 @@ export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    setBaseState: (state, action: PayloadAction<GameState>) => {
-      state.baseState = action.payload.baseState;
+    setBaseState: (state, action: PayloadAction<GameState["baseState"]>) => {
+      state.baseState = action.payload;
     },
   },
 });

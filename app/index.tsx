@@ -1,8 +1,9 @@
+import Button from "@/components/Button";
 import { setBaseState } from "@/reduxSlices/gameSlice";
 import { RootState } from "@/services/store";
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Index() {
@@ -12,19 +13,17 @@ export default function Index() {
   const gameState = useSelector((s: RootState) => s.gameState.baseState);
 
   const startGame = () => {
-    dispatch(setBaseState({ baseState: "countdown" }));
-    router.navigate("/race");
+    dispatch(setBaseState("running"));
+    router.navigate("/raceScreen");
   };
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Kayak duel</Text>
-        <Pressable style={styles.startButton} onPress={startGame}>
-          <Text style={styles.startButtonText}>Start Race</Text>
-        </Pressable>
+        <Text style={styles.title}>Kayak Duel!</Text>
+        <Button title="Start Game" onPress={startGame} />
 
-        <Link href={"/result"}>Go to Result</Link>
+        <Link href={"/resultScreen"}>Go to Result</Link>
 
         <Text>Current State: {gameState}</Text>
       </View>
@@ -42,19 +41,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: 20,
-    textAlign: "center",
-  },
-  startButton: {
-    backgroundColor: "#1E90FF",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  startButtonText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "bold",
     textAlign: "center",
   },
 });

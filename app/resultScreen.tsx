@@ -7,7 +7,7 @@ const Result = () => {
     <View style={styles.container}>
       <Text>Result Page</Text>
       <Link href="/">Go Home</Link>
-      <Link href="/race">Go to race</Link>
+      <Link href="/raceScreen">Go to race</Link>
     </View>
   );
 };
