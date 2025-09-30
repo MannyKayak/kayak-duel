@@ -16,7 +16,6 @@ export default function Index() {
     dispatch(setBaseState("running"));
     router.navigate("/raceScreen");
   };
-
   return (
     <View style={styles.container}>
       <View>

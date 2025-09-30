@@ -1,3 +1,5 @@
+import Debugger from "@/components/Debugger";
+import GameCanvas from "@/components/gameCanvas/GameCanvas";
 import { startGameLoop, stopGameLoop } from "@/game/gameLoop";
 import { setBaseState } from "@/reduxSlices/gameSlice";
 import { RootState } from "@/services/store";
@@ -5,7 +7,7 @@ import { PlayerState } from "@/types";
 import { goToResults } from "@/utils/functions";
 import { useRouter } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // creo una costante per lo stato iniziale del giocatore
@@ -21,7 +23,7 @@ const TAP_COOLDOWN_MS = 80;
 
 const RaceScreen = () => {
   const dispatch = useDispatch();
-  const gameState = useSelector((s: RootState) => s.gameState.baseState);
+  const { baseState, debug } = useSelector((s: RootState) => s.gameState);
   const router = useRouter();
   // uso useRef per mantenere lo stato del giocatore senza renderizzare il componente ad ogni cambiamento
   const playerState = useRef<PlayerState>({
@@ -45,7 +47,7 @@ const RaceScreen = () => {
 
   useEffect(() => {
     console.log(">>> useEffect mount RaceScreen");
-    if (gameState !== "running") return;
+    if (baseState !== "running") return;
     startGameLoop(
       playerState.current,
       (state) =>
@@ -62,21 +64,32 @@ const RaceScreen = () => {
     );
 
     return () => stopGameLoop();
-  }, [dispatch, gameState, router]);
+  }, [dispatch, baseState, router]);
 
   return (
     <View style={styles.container}>
-      <Text>Kayak position: {position}</Text>
-      <Text>Kayak speed: {playerState.current.speed}</Text>
-      <View style={styles.pressableContainer}>
-        <Pressable
-          style={styles.leftButton}
-          onPress={() => handlePress("L")}
-        ></Pressable>
-        <Pressable
-          style={styles.rightButton}
-          onPress={() => handlePress("R")}
-        ></Pressable>
+      {/* Canvas = background layer */}
+      <GameCanvas position={position} />
+
+      {/* Overlay = UI sopra al canvas */}
+      <View style={styles.overlay}>
+        {debug && (
+          <Debugger
+            positionInGameUnits={position}
+            playerSpeed={playerState.current.speed}
+          />
+        )}
+
+        <View style={styles.pressableContainer}>
+          <Pressable
+            style={styles.leftButton}
+            onPress={() => handlePress("L")}
+          />
+          <Pressable
+            style={styles.rightButton}
+            onPress={() => handlePress("R")}
+          />
+        </View>
       </View>
     </View>
   );
@@ -85,26 +98,31 @@ const RaceScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "flex-end", // controlli in basso
     alignItems: "center",
+    zIndex: 10,
+    paddingBottom: 30,
   },
   pressableContainer: {
-    display: "flex",
     flexDirection: "row",
+    width: "100%",
   },
   leftButton: {
     backgroundColor: "lightblue",
-    padding: 20,
-    margin: 0,
     width: "50%",
-    height: 300,
+    height: 200,
   },
   rightButton: {
     backgroundColor: "lightgreen",
-    padding: 20,
-    margin: 0,
     width: "50%",
-    height: 300,
+    height: 200,
   },
 });
 

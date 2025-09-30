@@ -9,6 +9,7 @@ export type PlayerState = {
 
 export interface GameState {
   baseState: "idle" | "running" | "finished";
+  debug: boolean;
 }
 
 export interface ButtonProps {
