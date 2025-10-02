@@ -1,11 +1,8 @@
+import { GameCanvasProps } from "@/types";
 import { convertMotionToSpritePosition } from "@/utils/functions";
 import { Canvas, Circle } from "@shopify/react-native-skia";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
-
-interface GameCanvasProps {
-  position: number;
-}
 
 export default function GameCanvas(props: GameCanvasProps) {
   // queste const regolano il movimento degli elementi, non sono numeri che influenzano il gioco
@@ -23,11 +20,11 @@ export default function GameCanvas(props: GameCanvasProps) {
 
 const styles = StyleSheet.create({
   canvas: {
-    zIndex: 0,
     display: "flex",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "red",
+    zIndex: 10,
   },
 });

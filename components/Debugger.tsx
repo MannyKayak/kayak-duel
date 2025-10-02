@@ -1,10 +1,6 @@
+import { DebuggerProps } from "@/types";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-interface DebuggerProps {
-  positionInGameUnits: number;
-  playerSpeed: number;
-}
 
 export default function Debugger(props: DebuggerProps) {
   return (
@@ -25,5 +21,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderStyle: "solid",
     borderWidth: 1,
+    zIndex: 100,
   },
 });

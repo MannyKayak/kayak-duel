@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: GameState = {
   baseState: "idle",
   debug: true,
+  endGameOverlay: true,
 };
 
 export const gameSlice = createSlice({

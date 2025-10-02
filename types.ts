@@ -10,6 +10,7 @@ export type PlayerState = {
 export interface GameState {
   baseState: "idle" | "running" | "finished";
   debug: boolean;
+  endGameOverlay: boolean;
 }
 
 export interface ButtonProps {
@@ -20,4 +21,17 @@ export interface ButtonProps {
 export interface GameLogicProps {
   state: PlayerState;
   delta: number;
+}
+
+export interface GameCanvasProps {
+  position: number;
+}
+
+export interface DebuggerProps {
+  positionInGameUnits: number;
+  playerSpeed: number;
+}
+
+export interface PressableContainerProps {
+  handlePress: (side: "L" | "R") => void;
 }
