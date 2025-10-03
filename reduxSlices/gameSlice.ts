@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: GameState = {
   baseState: "idle",
   debug: true,
-  endGameOverlay: true,
+  endGameOverlay: false,
 };
 
 export const gameSlice = createSlice({
@@ -14,9 +14,12 @@ export const gameSlice = createSlice({
     setBaseState: (state, action: PayloadAction<GameState["baseState"]>) => {
       state.baseState = action.payload;
     },
+    setEndGameOverlay: (state, action: PayloadAction<boolean>) => {
+      state.endGameOverlay = action.payload;
+    },
   },
 });
 
-export const { setBaseState } = gameSlice.actions;
+export const { setBaseState, setEndGameOverlay } = gameSlice.actions;
 
 export default gameSlice.reducer;

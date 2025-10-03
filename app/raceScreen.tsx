@@ -1,12 +1,12 @@
+import CountdownBanner from "@/components/CountdownBanner";
 import Debugger from "@/components/Debugger";
 import EndGameOverlay from "@/components/EndGameOverlay";
 import GameCanvas from "@/components/gameCanvas/GameCanvas";
 import PressableContainer from "@/components/PressableContainer";
 import { startGameLoop, stopGameLoop } from "@/game/gameLoop";
-import { setBaseState } from "@/reduxSlices/gameSlice";
+import { setBaseState, setEndGameOverlay } from "@/reduxSlices/gameSlice";
 import { RootState } from "@/services/store";
-import { PlayerState } from "@/types";
-import { goToResults } from "@/utils/functions";
+import { Countdown, PlayerState } from "@/types";
 import { useRouter } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -34,6 +34,10 @@ const RaceScreen = () => {
     ...initialPlayerState,
   });
   const [position, setPosition] = useState(initialPlayerState.position);
+  const [countdown, setCountdown] = useState<Countdown>({
+    active: true,
+    secondsLeft: 2,
+  });
   // funzione per capire che lato è stato premuto
   const handlePress = (side: PlayerState["currentTap"]) => {
     const now = performance.now();
@@ -50,8 +54,26 @@ const RaceScreen = () => {
   };
 
   useEffect(() => {
+    if (!countdown.active) return;
+    const tick = () => {
+      if (countdown.secondsLeft > 0)
+        setCountdown({ active: true, secondsLeft: countdown.secondsLeft - 1 });
+      else setCountdown({ active: false, secondsLeft: 0 });
+    };
+
+    const timer = setTimeout(() => {
+      tick();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [countdown]);
+
+  useEffect(() => {
     console.log(">>> useEffect mount RaceScreen");
-    if (baseState !== "running") return;
+    if (baseState !== "running" || countdown.active) return;
+    console.log(countdown);
     startGameLoop(
       playerState.current,
       (state) =>
@@ -62,16 +84,18 @@ const RaceScreen = () => {
         // metto fine al gioco alterando lo stato redux
         state.gameOver = "finished";
         dispatch(setBaseState("finished"));
-
-        goToResults(router);
+        dispatch(setEndGameOverlay(true));
       }
     );
 
     return () => stopGameLoop();
-  }, [dispatch, baseState, router]);
+  }, [dispatch, baseState, router, endGameOverlay, countdown]);
 
   return (
     <View style={styles.container}>
+      {countdown.active && (
+        <CountdownBanner secondsLeft={countdown.secondsLeft} />
+      )}
       {debug && (
         <Debugger
           positionInGameUnits={position}
@@ -83,7 +107,7 @@ const RaceScreen = () => {
 
       {/* Overlay = UI sopra al canvas */}
       <PressableContainer handlePress={handlePress} />
-      {endGameOverlay && <EndGameOverlay />}
+      {endGameOverlay && <EndGameOverlay router={router} />}
     </View>
   );
 };

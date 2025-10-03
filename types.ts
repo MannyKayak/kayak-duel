@@ -1,3 +1,5 @@
+import { Router } from "expo-router";
+
 export type PlayerState = {
   position: number;
   initialSpeed: number;
@@ -5,6 +7,11 @@ export type PlayerState = {
   lastTap: "L" | "R" | null;
   currentTap: "L" | "R" | null;
   gameOver: "contdown" | "race" | "finished";
+};
+
+export type Countdown = {
+  active: boolean;
+  secondsLeft: number;
 };
 
 export interface GameState {
@@ -34,4 +41,12 @@ export interface DebuggerProps {
 
 export interface PressableContainerProps {
   handlePress: (side: "L" | "R") => void;
+}
+
+export interface CountdownBannerProps {
+  secondsLeft: number;
+}
+
+export interface EndGameOverlayProps {
+  router: Router;
 }
