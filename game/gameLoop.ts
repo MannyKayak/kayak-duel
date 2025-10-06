@@ -8,7 +8,7 @@ let running = false;
 
 export function startGameLoop(
   playerState: PlayerState,
-  onUpdate: (state: PlayerState) => void,
+  onUpdate: (playerState: PlayerState) => void,
   onFinish: (state: PlayerState) => void
 ) {
   if (running) {

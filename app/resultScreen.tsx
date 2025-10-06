@@ -1,4 +1,4 @@
-import HomeIcon from "@/constants/icons/HomeIcon";
+import Octicons from "@expo/vector-icons/Octicons";
 import { Link } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -8,7 +8,7 @@ const Result = () => {
     <View style={styles.container}>
       <Text>Result Page</Text>
       <Link style={styles.linkButton} href="/">
-        <HomeIcon />
+        <Octicons style={styles.homeIcon} name="home" size={30} />
       </Link>
     </View>
   );
@@ -26,10 +26,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 20,
   },
-  buttonText: {
+  homeIcon: {
     color: "white",
-    fontSize: 40,
-    fontWeight: 600,
   },
 });
 

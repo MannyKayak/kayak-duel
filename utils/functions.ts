@@ -8,3 +8,6 @@ export function goToResults(router: Router) {
 export function convertMotionToSpritePosition(position: number): number {
   return 500 - position * 50;
 }
+export function getRandomTap() {
+  return Math.random() < 0.5 ? "left" : "right";
+}

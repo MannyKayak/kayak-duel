@@ -4,10 +4,12 @@ export type PlayerState = {
   position: number;
   initialSpeed: number;
   speed: number;
-  lastTap: "L" | "R" | null;
-  currentTap: "L" | "R" | null;
+  lastTap: Tap;
+  currentTap: Tap;
   gameOver: "contdown" | "race" | "finished";
 };
+export type Tap = "L" | "R" | null;
+export type Difficulty = "easy" | "medium" | "hard";
 
 export type Countdown = {
   active: boolean;
