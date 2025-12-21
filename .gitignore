@@ -38,3 +38,4 @@ firebaseConfig.ts
 *.tsbuildinfo
 
 app-example
+.env
